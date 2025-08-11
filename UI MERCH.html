@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WattTheMerch | Merch Official</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-white text-gray-800;
+        }
+        .gradient-button {
+            @apply bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        .card-shadow {
+            @apply shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out;
+        }
+        .nav-link {
+            @apply text-black hover:text-green-600 transition-colors duration-200;
+        }
+        .bg-cozy-subtle {
+            background-color: #f8f8f8;
+        }
+        /* Toast notification styling */
+        .toast {
+            @apply fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 fixed w-full z-50">
+        <nav class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="text-2xl font-bold text-black">
+                WattTheMerch <span class="text-green-600">Official</span>
+            </div>
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="nav-link font-medium">Beranda</a></li>
+                <li><a href="#shop" class="nav-link font-medium">Toko</a></li>
+                <li><a href="#about" class="nav-link font-medium">Tentang Kami</a></li>
+                <li><a href="#cart" id="cart-link" class="nav-link font-medium">Keranjang (<span id="cart-count">0</span>)</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="menu-button" class="text-black focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black bg-opacity-75 z-40">
+            <div class="bg-white w-3/4 h-full p-6 shadow-lg relative ml-auto transform transition-transform duration-300">
+                <button id="close-menu-button" class="absolute top-4 right-4 text-black">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <ul class="flex flex-col space-y-4 mt-12">
+                    <li><a href="#home" class="block text-black hover:text-green-600 py-2 font-medium">Beranda</a></li>
+                    <li><a href="#shop" class="block text-black hover:text-green-600 py-2 font-medium">Toko</a></li>
+                    <li><a href="#about" class="block text-black hover:text-green-600 py-2 font-medium">Tentang Kami</a></li>
+                    <li><a href="#contact" class="block text-black hover:text-green-600 py-2 font-medium">Kontak</a></li>
+                    <li><a href="#cart" id="mobile-cart-link" class="block text-black hover:text-green-600 py-2 font-medium">Keranjang (<span id="mobile-cart-count">0</span>)</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-gray-900 h-screen flex items-center justify-center text-white overflow-hidden">
+            <img src="StockCake Elegant Clothing Store.jpg" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <div class="relative z-10 text-center p-6 bg-black bg-opacity-50 rounded-lg max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    " WattTheMerch <span class="text-green-400">by HMTE </span>Official Store. "
+                </h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">
+                    Temukan berbagai koleksi merchandise WattTheMerch disini!
+                </p>
+                <a href="#shop" class="gradient-button text-lg">Checkout Sekarang</a>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="shop" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <h2 class="text-4xl font-bold text-center mb-12 text-black">On-going Pre-Order</h2>
+                <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Product cards will be dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-16 md:py-24 bg-cozy-subtle">
+            <div class="max-w-4xl mx-auto px-6 md:px-12 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-black">About WattTheMerch</h2>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    WattTheMerch adalah brand merch yang di desain untuk kalian yang berjiwa muda.
+                </p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+                </p>
+                <form id="newsletter-form" class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center">
+        <div class="bg-white w-full max-w-2xl p-6 rounded-lg relative max-h-[80vh] overflow-y-auto">
+            <button id="close-cart-button" class="absolute top-4 right-4 text-black">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-black">Keranjang Belanja</h2>
+            <div id="cart-items" class="space-y-4"></div>
+            <div class="mt-6 border-t pt-4">
+                <p class="text-xl font-semibold text-black">Total: <span id="cart-total">Rp 0</span></p>
+                <button id="checkout-button" class="gradient-button mt-4 w-full">Lanjutkan ke Pembayaran</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden opacity-0">Item ditambahkan ke keranjang!</div>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">WattTheMerch</h3>
+                <p class="text-gray-400">by Himpunan Mahasiswa Teknik Elektro Unsoed.</p>
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="text-gray-400 hover:text-green-500 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.779 1.674 4.931 4.931.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.07 4.85-.148 3.252-1.674 4.779-4.931 4.931-1.265.058-1.645.069-4.849.069-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.779-1.674-4.931-4.931-.058-1.265-.069-1.645-.069-4.849 0-3.204.012-3.584.07-4.85.148-3.252 1.674-4.779 4.931-4.931 1.265-.058 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.058 1.281-.072 1.689-.072 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm6.406-11.845c-.796 0-1.44-.644-1.44-1.44s.644-1.44 1.44-1.44 1.44.644 1.44 1.44-.644 1.44-1.44 1.44z"></path></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-green-500 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Kontak Kami</h3>
+                <p class="text-gray-400 mb-2">Telepon: (nomer asa) </p>
+                <p class="text-gray-400 mb-2">Alamat: Purbalingga</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
+            <p>&copy; 2025 WattTheMerch. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data (replace with backend API fetch)
+        const products = [
+            {
+                id: 1,
+                name: 'Workshirt Half-Zipper',
+                description: 'Workshirt pt sekian yang kece dengan model half-zipper',
+                price: 350000,
+                image: 'https://placehold.co/600x400/e0ffe0/222?text=Hoodie+Premium'
+            },
+            {
+                id: 2,
+                name: 'Lanyard',
+                description: 'buat dompet kartu kamu atau lainnya.',
+                price: 180000,
+                image: 'https://placehold.co/600x400/e0ffe0/222?text=Kaos+Desain+Unik'
+            }
+        ];
+
+        // Cart state
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // DOM elements
+        const productsContainer = document.getElementById('products-container');
+        const cartModal = document.getElementById('cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+        const mobileCartCount = document.getElementById('mobile-cart-count');
+        const closeCartButton = document.getElementById('close-cart-button');
+        const cartLink = document.getElementById('cart-link');
+        const mobileCartLink = document.getElementById('mobile-cart-link');
+        const checkoutButton = document.getElementById('checkout-button');
+        const toast = document.getElementById('toast');
+        const menuButton = document.getElementById('menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const newsletterForm = document.getElementById('newsletter-form');
+
+        // Render products
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg overflow-hidden card-shadow';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-black">${product.name}</h3>
+                        <p class="text-gray-600 mb-4">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-700">Rp ${product.price.toLocaleString('id-ID')}</span>
+                            <button class="gradient-button text-sm px-4 py-2 add-to-cart" data-id="${product.id}">Tambah ke Keranjang</button>
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // Render cart items
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (!product) return;
+                const itemTotal = product.price * item.quantity;
+                total += itemTotal;
+                const cartItem = document.createElement('div');
+                cartItem.className = 'flex items-center justify-between border-b py-4';
+                cartItem.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded">
+                        <div>
+                            <h3 class="text-lg font-semibold text-black">${product.name}</h3>
+                            <p class="text-gray-600">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="decrease-quantity text-green-600 hover:text-green-800" data-id="${item.id}">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="increase-quantity text-green-600 hover:text-green-800" data-id="${item.id}">+</button>
+                        <button class="remove-item text-red-600 hover:text-red-800" data-id="${item.id}">Hapus</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+            cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            mobileCartCount.textContent = cartCount.textContent;
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.remove('hidden', 'opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 2000);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id: productId, quantity: 1 });
+            }
+            renderCart();
+            showToast('Item ditambahkan ke keranjang!');
+        }
+
+        // Update quantity
+        function updateQuantity(productId, action) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            if (action === 'increase') {
+                item.quantity += 1;
+            } else if (action === 'decrease' && item.quantity > 1) {
+                item.quantity -= 1;
+            } else if (action === 'decrease' && item.quantity === 1) {
+                cart = cart.filter(item => item.id !== productId);
+            }
+            renderCart();
+            showToast('Keranjang diperbarui!');
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            renderCart();
+            showToast('Item dihapus dari keranjang!');
+        }
+
+        // Event listeners
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                const productId = parseInt(e.target.dataset.id);
+                addToCart(productId);
+            }
+            if (e.target.classList.contains('increase-quantity')) {
+                const productId = parseInt(e.target.dataset.id);
+                updateQuantity(productId, 'increase');
+            }
+            if (e.target.classList.contains('decrease-quantity')) {
+                const productId = parseInt(e.target.dataset.id);
+                updateQuantity(productId, 'decrease');
+            }
+            if (e.target.classList.contains('remove-item')) {
+                const productId = parseInt(e.target.dataset.id);
+                removeFromCart(productId);
+            }
+        });
+
+        cartLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileCartLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartModal.classList.remove('hidden');
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeCartButton.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        checkoutButton.addEventListener('click', () => {
+            // Backend integration point: Send cart data to backend for checkout
+            console.log('Checkout:', cart);
+            showToast('Lanjutkan ke pembayaran (integrasi backend diperlukan)');
+        });
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        });
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value;
+            // Backend integration point: Send email to backend for newsletter subscription
+            console.log('Newsletter subscription:', email);
+            showToast('Berlangganan berhasil! (integrasi backend diperlukan)');
+            newsletterForm.reset();
+        });
+
+async function fetchProducts() {
+  const res = await fetch('http://localhost:3000/products');
+  const data = await res.json();
+  products.length = 0;
+  products.push(...data);
+  renderProducts();
+}
+
+        function fetchProducts() {
+            // Example: fetch('/api/products').then(response => response.json()).then(data => { products = data; renderProducts(); });
+            renderProducts(); // Using static data for now
+        }
+
+        // Initialize
+        fetchProducts();
+        renderCart();
+    </script>
+</body>
+</html>
